@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Login Form</title>
+    <title>Registration Form</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <?php
@@ -51,20 +51,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="register.php">Sign Up</a></li>
+                <li><a href="index.php">Sign In</a></li>
             </ul>
         </nav>
     </header>
     <div class="login-form">
         <h2>Login Form</h2>
-        <form method="POST">
+        <form method="POST" autocomplete="off">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter your username">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter your password">
 
-            <input type="submit" value="Login">
+            <input type="submit" value="REGISTER">
         </form>
     </div>
 </body>
