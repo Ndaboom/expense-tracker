@@ -12,6 +12,7 @@ include('db.php');
 
 // Check if form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    extract($_POST);
     // Get form data
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -28,20 +29,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare($sql);
     $stmt->execute(['username' => $username, 'password' => sha1($password)]);
 
-    if ($stmt->rowCount() > 0) {
-        // User found, set session variable and redirect to dashboard
-        $_SESSION['username'] = $username;
-        header('Location: dashboard.php');
+    // Check if username or email already exists in database
+    $sql = "SELECT * FROM users WHERE username = :username OR email = :email";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['username' => $username, 'email' => $email]);
+
+    if (
+        $stmt->rowCount() > 0
+    ) {
+        // Username or email already exists, set error message and redirect to register page
+        $_SESSION['error'] = 'Username or email already taken';
+        header('Location: register.php');
         exit;
     } else {
-        // User not found, set error message and redirect to login page
-        $_SESSION['error'] = 'Invalid username or password';
-        header('Location: login.php');
-        exit;
-    }
+        // Username and email are unique, insert new user record into database
+        $sql = "INSERT INTO users (username, password, email) VALUES (:username, :password, :email)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            'username' => $username,
+            'password' => sha1($password),
+            'email' => $email
+        ]);
 
-    // Close database connection
-    $conn = null;
+        header('Location: dashboard.php');
+
+        // Close database connection
+        $conn = null;
+    }
 }
 
 ?>
@@ -56,7 +70,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </nav>
     </header>
     <div class="login-form">
-        <h2>Login Form</h2>
+        <h2>Registration Form</h2>
+        <?php
+        // Display error message if set
+        if (isset($_SESSION['error'])) {
+            echo '<p style="color: red;">' . $_SESSION['error'] . '</p>';
+            unset($_SESSION['error']);
+        }
+        ?>
         <form method="POST" autocomplete="off">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter your username">
