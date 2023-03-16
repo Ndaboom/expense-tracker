@@ -7,6 +7,7 @@
 /* Style the navigation bar */
 nav {
 	background-color: #333;
+	height: 40px;
 }
 
 nav ul {
@@ -59,8 +60,6 @@ nav ul li a:hover {
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	margin-bottom: 20px;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .login-form input[type="submit"] {

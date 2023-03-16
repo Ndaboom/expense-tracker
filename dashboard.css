@@ -1,0 +1,177 @@
+/* Reset default margin and padding */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/* Style the navigation bar */
+.navigation-bar {
+    display: flex;
+}
+
+nav {
+	background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 45px;
+    width: 100%;
+}
+
+nav h1{
+    width: 30%;
+    margin: 0px;
+    color: #FFFFFF;
+}
+
+nav ul {
+	list-style: none;
+	display: flex;
+	justify-content: flex-end;
+    width: 70%;
+}
+
+nav ul li {
+	margin-right: 20px;
+}
+
+nav ul li a {
+	color: #fff;
+	text-decoration: none;
+	padding: 10px;
+}
+
+nav ul li a:hover {
+	background-color: #fff;
+	color: #333;
+}
+
+.container {
+    display: flex;
+}
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 80%;
+    padding: 20px;
+}
+
+.side-bar {
+    width: 20%;
+    padding: 30px;
+}
+
+.side-bar ul {
+    list-style: none;
+}
+
+.side-bar ul li {
+    height: 40px;
+}
+
+.side-bar ul li span{
+    margin-right: 20px;
+}
+
+.card {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card .icon {
+    font-size: 48px;
+    margin: 0 auto;
+    padding: 10px;
+    color: #4E4E4E;
+}
+
+.card .title {
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #4E4E4E;
+}
+
+.card .amount {
+    font-size: 36px;
+    font-weight: bold;
+    color: #008CBA;
+}
+
+.card .description {
+    font-size: 14px;
+    color: #4E4E4E;
+    margin-top: 10px;
+}
+
+.card .category {
+    font-size: 14px;
+    color: #4E4E4E;
+    margin-top: 10px;
+}
+
+.card .actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+}
+
+.card .actions button {
+    background-color: #008CBA;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.card .actions button:hover {
+    background-color: #0077A8;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #4E4E4E;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4E4E4E;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.total {
+    font-size: 48px;
+    font-weight: bold;
+    color: #008CBA;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
