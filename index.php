@@ -5,6 +5,46 @@
     <title>Login Form</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+<?php
+// Start session
+session_start();
+include('db.php');
+
+// Check if form was submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get form data
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Validate form data
+    if (empty($username) || empty($password)) {
+        $_SESSION['error'] = 'Please enter both username and password';
+        header('Location: login.php');
+        exit;
+    }
+
+    // Query database for user
+    $sql = "SELECT * FROM users WHERE username = :username AND password = :password";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['username' => $username, 'password' => sha1($password)]);
+
+    if ($stmt->rowCount() > 0) {
+        // User found, set session variable and redirect to dashboard
+        $_SESSION['username'] = $username;
+        header('Location: dashboard.php');
+        exit;
+    } else {
+        // User not found, set error message and redirect to login page
+        $_SESSION['error'] = 'Invalid username or password';
+        header('Location: login.php');
+        exit;
+    }
+
+    // Close database connection
+    $conn = null;
+}
+
+?>
 
 <body>
     <header>
