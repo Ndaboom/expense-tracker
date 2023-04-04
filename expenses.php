@@ -79,10 +79,11 @@ if (isset($_POST['add-expense'])) {
                         <tbody>
                             <?php if (count($expenses) != 0) : ?>
                                 <?php foreach ($expenses as $index => $expense) : ?>
+                                    <?php $category = fetch_defined_record_by_parameter('categories', 'id', $expense->category_id); ?>
                                     <tr>
                                         <th scope="row"><?= $index + 1 ?></th>
                                         <td><?= $expense->description ?></td>
-                                        <td><?= $expense->category_id ?></td>
+                                        <td><?= $category->name ?></td>
                                         <td><?= $expense->amount ?></td>
                                         <td><?= $expense->date ?></td>
                                     </tr>
