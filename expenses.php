@@ -113,7 +113,7 @@ if (isset($_POST['add-expense'])) {
                             </div>
                             <div class="col-md-6">
                                 <label for="amountInput" class="form-label">Expense categories</label>
-                                <select class="form-control" name="category_id">
+                                <select class="form-control" name="category_id" required>
                                     <option>Categories</option>
                                     <?php foreach ($categories as $category) : ?>
                                     <option value="<?= $category->id ?>"><?= $category->name ?></option>
