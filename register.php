@@ -8,6 +8,8 @@
 <?php
 // Start session
 session_start();
+// Check auth
+include('filters/guest_filter.php');
 include('db.php');
 
 // Check if form was submitted

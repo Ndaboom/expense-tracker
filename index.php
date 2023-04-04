@@ -8,7 +8,11 @@
 <?php
 // Start session
 session_start();
+
+// Check auth
+include('filters/guest_filter.php');
 include('db.php');
+
 
 // Check if form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -29,14 +33,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->execute(['username' => $username, 'password' => sha1($password)]);
 
     if ($stmt->rowCount() > 0) {
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
         // User found, set session variable and redirect to dashboard
         $_SESSION['username'] = $username;
+        $_SESSION['user_id'] = $data->id;
         header('Location: dashboard.php');
         exit;
     } else {
         // User not found, set error message and redirect to login page
         $_SESSION['error'] = 'Invalid username or password';
-        header('Location: login.php');
+        header('Location: index.php');
         exit;
     }
 
