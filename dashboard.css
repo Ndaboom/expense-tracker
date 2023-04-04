@@ -48,13 +48,13 @@ nav ul li a:hover {
 
 .container {
     display: flex;
+    margin: 0px !important;
 }
 
 .dashboard {
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
-    max-width: 1200px;
     width: 80%;
     padding: 20px;
 }
