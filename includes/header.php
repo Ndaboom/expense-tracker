@@ -8,5 +8,13 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="dashboard.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <?php
+    session_start();
+    // Check auth
+    include('filters/auth_filter.php');
+
+    ?>
+
     <title>Expense Tracker Dashboard</title>
 </head>

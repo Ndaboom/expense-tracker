@@ -26,9 +26,6 @@ After you're finished please remove all the comments and instructions!
 -->
 
 <div align="center">
-  <!-- You are encouraged to replace this logo with your own! Otherwise you can also remove it. -->
-  <img src="murple_logo.png" alt="logo" width="140"  height="auto" />
-  <br/>
 
   <h3><b>Expense tracker</b></h3>
 
@@ -64,7 +61,7 @@ After you're finished please remove all the comments and instructions!
 
 > Describe your project in 1 or 2 sentences.
 
-**[Expense_tracker]** is a web application for expense tracking
+**[Expense_tracker]** is a web application for expenses tracking
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -75,21 +72,21 @@ After you're finished please remove all the comments and instructions!
 <details>
   <summary>Client</summary>
   <ul>
-    <li><a href="https://reactjs.org/">HTML & CSS</a></li>
+    <li><a href="#">HTML & CSS</a></li>
   </ul>
 </details>
 
 <details>
   <summary>Server</summary>
   <ul>
-    <li><a href="https://expressjs.com/">PHP</a></li>
+    <li><a href="https://php.net/">PHP</a></li>
   </ul>
 </details>
 
 <details>
 <summary>Database</summary>
   <ul>
-    <li><a href="https://www.postgresql.org/">MySQL</a></li>
+    <li><a href="https://www.mysql.com/">MySQL</a></li>
   </ul>
 </details>
 
@@ -102,16 +99,6 @@ After you're finished please remove all the comments and instructions!
 - **[key_feature_1]**
 - **[key_feature_2]**
 - **[key_feature_3]**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LIVE DEMO -->
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-> Add a link to your deployed project.
-
-- [Live Demo Link](https://google.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
