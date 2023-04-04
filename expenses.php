@@ -74,17 +74,22 @@ if (isset($_POST['add-expense'])) {
                                 <th scope="col">Categories</th>
                                 <th scope="col">Amount ($)</th>
                                 <th scope="col">Expense Date</th>
+                                <th scope="col">Options</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if (count($expenses) != 0) : ?>
                                 <?php foreach ($expenses as $index => $expense) : ?>
+                                    <?php $category = fetch_defined_record_by_parameter('categories', 'id', $expense->category_id); ?>
                                     <tr>
                                         <th scope="row"><?= $index + 1 ?></th>
                                         <td><?= $expense->description ?></td>
-                                        <td><?= $expense->category_id ?></td>
+                                        <td><?= $category->name ?></td>
                                         <td><?= $expense->amount ?></td>
                                         <td><?= $expense->date ?></td>
+                                        <td><span data-expense_id="<?= $expense->id ?>" class="material-symbols-outlined delete-expense">
+                                                delete
+                                            </span></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else : ?>
@@ -116,7 +121,7 @@ if (isset($_POST['add-expense'])) {
                                 <select class="form-control" name="category_id" required>
                                     <option>Categories</option>
                                     <?php foreach ($categories as $category) : ?>
-                                    <option value="<?= $category->id ?>"><?= $category->name ?></option>
+                                        <option value="<?= $category->id ?>"><?= $category->name ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -140,6 +145,28 @@ if (isset($_POST['add-expense'])) {
 
     <!-- Bootstrap script -->
     <script src="vendors/boostrap/js/bootstrap.min.js"></script>
+    <script src="vendors/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).on('click', '.delete-expense', function() {
+                    var expense_id = $(this).data('expense_id');
+                    var url = 'ajax/delete-expense.php';
+                    if (confirm("Delete this expense?") == true) {
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            data: {
+                                expense_id: expense_id
+                            },
+                            beforeSend: function() {
+                                alert('Requesting');
+                            },
+                            success: function(data) {
+                                alert('Success');
+                            }
+                        });
+                    }
+                    });
+    </script>
 </body>
 
 </html>

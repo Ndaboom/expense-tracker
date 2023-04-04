@@ -20,3 +20,12 @@ function get_all_data_from_table_with_parameter($table, $field, $value)
     $q->closeCursor();
     return $data;
 }
+
+function fetch_defined_record_by_parameter($table, $field, $value){
+    global $conn;
+    $q = $conn->prepare("SELECT * FROM " . $table . " WHERE " . $field . " = ?");
+    $q->execute(array($value));
+    $data = $q->fetch(PDO::FETCH_OBJ);
+    $q->closeCursor();
+    return $data;
+}
