@@ -165,7 +165,7 @@ if (isset($_POST['add-expense'])) {
                     category: category
                 },
                 beforeSend: function() {
-                    alert('Requesting the report...');
+                    //alert('Requesting the report...'); Some loading stuff
                 },
                 success: function(data) {
                     $('#table_content').html(data);

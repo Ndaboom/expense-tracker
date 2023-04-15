@@ -23,7 +23,7 @@ if (count($expenses) != 0){
     foreach ($expenses as $index => $expense){
         $category = fetch_defined_record_by_parameter('categories', 'id', $expense->category_id);
         $output .= '
-          <tr>
+        <tr>
             <th scope="row">'.($index+1).'</th>
             <td>'. $expense->description .'</td>
             <td>'. $category->name .'</td>
