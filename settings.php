@@ -83,7 +83,7 @@ if (isset($_POST['add-expense'])) {
                                 <th scope="col">Expense Date</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="table_content">
                             <?php if (count($expenses) != 0) : ?>
                                 <?php foreach ($expenses as $index => $expense) : ?>
                                     <?php $category = fetch_defined_record_by_parameter('categories', 'id', $expense->category_id); ?>
@@ -168,7 +168,7 @@ if (isset($_POST['add-expense'])) {
                     alert('Requesting the report...');
                 },
                 success: function(data) {
-                    alert(data);
+                    $('#table_content').html(data);
                 }
             });
 
