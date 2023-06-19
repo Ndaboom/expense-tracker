@@ -26,6 +26,59 @@ if (isset($_POST['add-expense'])) {
 }
 
 ?>
+<style>
+    .dashboard .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .dashboard .card-header .col-md-4 {
+        font-size: 18px;
+    }
+
+    .dashboard .card-header .col-md-8 {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .dashboard .card-header .form-control {
+        width: 150px;
+    }
+
+    .dashboard .card-body {
+        padding: 0;
+    }
+
+    .dashboard .table {
+        margin-bottom: 0;
+    }
+
+    .dashboard .table thead th {
+        font-weight: bold;
+    }
+
+    .dashboard .table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .dashboard .table tbody tr:hover {
+        background-color: #e6e6e6;
+    }
+
+    .dashboard .table td,
+    .dashboard .table th {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .dashboard .table td:last-child {
+        text-align: center;
+    }
+</style>
 
 <body>
     <header class="navigation-bar">

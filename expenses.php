@@ -148,24 +148,24 @@ if (isset($_POST['add-expense'])) {
     <script src="vendors/jquery-3.6.4.min.js"></script>
     <script>
         $(document).on('click', '.delete-expense', function() {
-                    var expense_id = $(this).data('expense_id');
-                    var url = 'ajax/delete-expense.php';
-                    if (confirm("Delete this expense?") == true) {
-                        $.ajax({
-                            type: 'POST',
-                            url: url,
-                            data: {
-                                expense_id: expense_id
-                            },
-                            beforeSend: function() {
-                                alert('Requesting');
-                            },
-                            success: function(data) {
-                                alert('Success');
-                            }
-                        });
+            var expense_id = $(this).data('expense_id');
+            var url = 'ajax/delete-expense.php';
+            if (confirm("Delete this expense?") == true) {
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {
+                        expense_id: expense_id
+                    },
+                    beforeSend: function() {
+                        alert('Requesting');
+                    },
+                    success: function(data) {
+                        alert('Success');
                     }
-                    });
+                });
+            }
+        });
     </script>
 </body>
 

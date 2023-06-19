@@ -3,7 +3,7 @@
 // Connect to database using PDO (replace with your own database credentials)
 $servername = 'localhost';
 $dbusername = 'root';
-$dbpassword = '';
+$dbpassword = 'root';
 $dbname = 'expense-tracker';
 $dsn = "mysql:host=$servername;dbname=$dbname";
 $options = [

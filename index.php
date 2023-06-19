@@ -3,7 +3,7 @@
 
 <head>
     <title>Login Form</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
 </head>
 <?php
 // Start session
