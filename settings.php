@@ -26,6 +26,59 @@ if (isset($_POST['add-expense'])) {
 }
 
 ?>
+<style>
+    .dashboard .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .dashboard .card-header .col-md-4 {
+        font-size: 18px;
+    }
+
+    .dashboard .card-header .col-md-8 {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .dashboard .card-header .form-control {
+        width: 150px;
+    }
+
+    .dashboard .card-body {
+        padding: 0;
+    }
+
+    .dashboard .table {
+        margin-bottom: 0;
+    }
+
+    .dashboard .table thead th {
+        font-weight: bold;
+    }
+
+    .dashboard .table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .dashboard .table tbody tr:hover {
+        background-color: #e6e6e6;
+    }
+
+    .dashboard .table td,
+    .dashboard .table th {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .dashboard .table td:last-child {
+        text-align: center;
+    }
+</style>
 
 <body>
     <header class="navigation-bar">
@@ -57,11 +110,18 @@ if (isset($_POST['add-expense'])) {
             <div class="card w-100">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-8">
-                            Expenses
+                        <div class="col-md-4">
+                            Generate reports
                         </div>
-                        <div class="col-md-2">
-                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-expense">Add Expense</a>
+                        <div class="col-md-8">
+                            <input id="input-date-1" type="date" class="form-control" placeholder="Date 1" />
+                            <input id="input-date-2" type="date" class="form-control" placeholder="Date 2" />
+                            <select class="form-control" id="input-category">
+                                <option>Choose category</option>
+                                <?php foreach ($categories as $category) : ?>
+                                    <option id="<?= $category->id ?>" value="<?= $category->id ?>"><?= $category->name ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -74,10 +134,9 @@ if (isset($_POST['add-expense'])) {
                                 <th scope="col">Categories</th>
                                 <th scope="col">Amount ($)</th>
                                 <th scope="col">Expense Date</th>
-                                <th scope="col">Options</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="table_content">
                             <?php if (count($expenses) != 0) : ?>
                                 <?php foreach ($expenses as $index => $expense) : ?>
                                     <?php $category = fetch_defined_record_by_parameter('categories', 'id', $expense->category_id); ?>
@@ -87,9 +146,6 @@ if (isset($_POST['add-expense'])) {
                                         <td><?= $category->name ?></td>
                                         <td><?= $expense->amount ?></td>
                                         <td><?= $expense->date ?></td>
-                                        <td><span data-expense_id="<?= $expense->id ?>" class="material-symbols-outlined delete-expense">
-                                                delete
-                                            </span></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else : ?>
@@ -147,24 +203,28 @@ if (isset($_POST['add-expense'])) {
     <script src="vendors/boostrap/js/bootstrap.min.js"></script>
     <script src="vendors/jquery-3.6.4.min.js"></script>
     <script>
-        $(document).on('click', '.delete-expense', function() {
-            var expense_id = $(this).data('expense_id');
-            var url = 'ajax/delete-expense.php';
-            if (confirm("Delete this expense?") == true) {
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: {
-                        expense_id: expense_id
-                    },
-                    beforeSend: function() {
-                        alert('Requesting');
-                    },
-                    success: function(data) {
-                        alert('Success');
-                    }
-                });
-            }
+        $(document).on('change', 'select#input-category', function() {
+            var date1 = $('input#input-date-1').val();
+            var date2 = $('input#input-date-2').val();
+            var category = $(this).children(":selected").attr("id");
+            var url = 'ajax/report-expense.php';
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {
+                    date1: date1,
+                    date2: date2,
+                    category: category
+                },
+                beforeSend: function() {
+                    //alert('Requesting the report...'); Some loading stuff
+                },
+                success: function(data) {
+                    $('#table_content').html(data);
+                }
+            });
+
         });
     </script>
 </body>

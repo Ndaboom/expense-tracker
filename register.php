@@ -3,7 +3,7 @@
 
 <head>
     <title>Registration Form</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
 </head>
 <?php
 // Start session
